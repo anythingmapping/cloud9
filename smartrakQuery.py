@@ -25,9 +25,8 @@ def outputFunc(filename, resultList):
         writer = csv.writer(f)
         for i in range(len(resultList)):
             print resultList[0]
-            writer.writerow(resultList[0])
+            writer.writerow(resultList[i])
             
-        
     finally:
         f.close()
     
