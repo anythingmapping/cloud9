@@ -1,9 +1,6 @@
 from suds.client import Client
 import csv
 
-
-    
-
 """EventHistoryID = 6852991503
 RemoteID = 6817
 EventCodeText = "TRAVELLED"
@@ -17,7 +14,6 @@ ExtraInfo = None
 NearestAddress = "26-30 Stewart Crescent, Hokowhitu, Palmerston North City
 SupplyVoltage = 28.1807008634
 """
-
 
 def outputFunc(filename, resultList):
     """Function to write data to csv archive"""

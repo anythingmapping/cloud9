@@ -2,10 +2,10 @@
 # Name:        updateAGOL
 # Purpose:     update AGOL features
 #
-# Author:      mostynl
+# Author:      ceciljames
 #
 # Created:     24/08/2015
-# Copyright:   (c) mostynl 2015
+# Copyright:   (c) ceciljames 2015
 # Licence:     NZ Creative Commons 3.0
 #-------------------------------------------------------------------------------
 
