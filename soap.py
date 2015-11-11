@@ -44,12 +44,15 @@ def updateAGOL(feat):
 
 
 objId = queryAGOL("1=1")
-featUpdates = formatQuery(objId, "No")
-updateAGOL(featUpdates)
+print objId
 
-objId = queryAGOL(currentDay+"='Yes'")
-featUpdates = formatQuery(objId, "Yes")
-updateAGOL(featUpdates)
+##### commented while i test 
+#featUpdates = formatQuery(objId, "No")
+#updateAGOL(featUpdates)
+
+#objId = queryAGOL(currentDay+"='Yes'")
+#featUpdates = formatQuery(objId, "Yes")
+#updateAGOL(featUpdates)
 
 
 print "keep working"

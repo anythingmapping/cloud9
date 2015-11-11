@@ -1,19 +1,6 @@
 from suds.client import Client
 import csv
 
-"""EventHistoryID = 6852991503
-RemoteID = 6817
-EventCodeText = "TRAVELLED"
-RtDate = 2015-10-16 14:17:34
-Latitude = -40.35466
-Longitude = 175.629415
-Speed = 16
-Heading = 61
-Odometer = None
-ExtraInfo = None
-NearestAddress = "26-30 Stewart Crescent, Hokowhitu, Palmerston North City
-SupplyVoltage = 28.1807008634
-"""
 
 def outputFunc(filename, resultList):
     """Function to write data to csv archive"""
@@ -38,25 +25,43 @@ def grabEvents():
     client = Client(url)
     #print client
     
+    #### CREDS ####
     authentication = "D37EEE129A664B46B5C0EC0C1CC8CC1D"
-    remoteId = 6817
-    date = "2015-10-16" #This does not seem to take a UTC time value
-    eventCodes = None
     
+    glass194 = 7813
+    glass195 = 16100
+    
+    ### set this to which truck you want 
+    remoteId = glass194
+    
+    date = "2015-09-16" #This does not seem to take a UTC time value
+    eventCodes = None
+    filename = "truck{0}{1}.csv".format(remoteId,date)
+    
+    #### GETTING THE REPORT ####
     result = client.service.GetHistoryForDay(authentication, remoteId, date, eventCodes)
     resultList = []
-    
     for i in range(len(result[0])):
-        
         resultList.append(result[0][i])
     
-    return resultList  
+    
+    ##### WRITING USING THE CRED ####
+    f = open(filename, 'wt')
+    
+    try:
+        writer = csv.writer(f)
+        for i in range(len(resultList)):
+            print resultList[0]
+            writer.writerow(resultList[i])
+            
+    finally:
+        f.close()
 
-resultList = grabEvents()
+grabEvents()
 
 #the date for archive naming
-filename = "testoutput.csv"
+#filename = "testoutput.csv"
 
 #outputs the data to archive file on agsserv101
-outputFunc(filename,resultList)
+#outputFunc(filename,resultList)
 print "The process is complete"
