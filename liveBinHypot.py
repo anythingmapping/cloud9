@@ -1,6 +1,7 @@
 import urllib
 import json
 from suds.client import Client
+import math
 
 def grabEvents():
     """ function to grab current smartrak location using. requires suds.client as Client """
@@ -29,12 +30,12 @@ def grabEvents():
     lstV = (lstVX,lstVY)
     return lstV
 
-
 def queryAGOL():
     """ PNCC queryAGOL content """
     #url = 'http://services.arcgis.com/Fv0Tvc98QEDvQyjL/ArcGIS/rest/services/ProcessManager_WFL/FeatureServer/0'
     currentDay = "Sunday" + "Collect"
-    targetFeatureURL = "http://services.arcgis.com/Fv0Tvc98QEDvQyjL/ArcGIS/rest/services/LiveCollectionData_WFL/FeatureServer"
+    #targetFeatureURL = "http://services.arcgis.com/Fv0Tvc98QEDvQyjL/ArcGIS/rest/services/LiveCollectionData_WFL/FeatureServer"
+    targetFeatureURL = "http://services.arcgis.com/Fv0Tvc98QEDvQyjL/arcgis/rest/services/liveBins_wgs84/FeatureServer"
     url = targetFeatureURL + '/0/query'
     headers = {"Content-type": "application/x-www-form-urlencoded","Accept": "text/plain"}
     payload = {"Where" : "1=1", "outFields": "objectID", "f" : "json", "returnGeometry":"true"}
@@ -43,8 +44,7 @@ def queryAGOL():
     ############## PROCESSING THE RESULT #################
     result = urllib.urlopen(url, urllib.urlencode(payload)).read()
     queryReturn =  json.loads(result)
-    
-    
+
     ############## RETURN THE BIN XY ####################
     binList = []
     
@@ -55,17 +55,24 @@ def queryAGOL():
     return binList
 
 
-
 ########## RETURNING THE LAST TRUCK LOCATION #############
 truckList = grabEvents()
-print truckList
-print "hello rubbish"
+#print truckList
+#print "hello rubbish"
 
 #########RETURNING THE BINLIST #############
 binList = queryAGOL()
-for i in range(len(binList)):
-    print binList[i]
+#for i in range(len(binList)):
+#    print binList[i]
     
     
 ########### CALCULATE THE DISTANCE BETWEEN BIN & TRUCK ############
+x1 = truckList[0]
+y1 = truckList[1]
 
+x2 = binList[0]['geometry']['x']
+y2 = binList[0]['geometry']['y']
+
+print "xy"
+print x1,y1
+print x2,y2
