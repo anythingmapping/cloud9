@@ -113,7 +113,7 @@ for i in range(len(binList)):
     y2 = binList[i]['geometry']['y']
     #print x2,y2
     disToTarget = haversineFormula(x1,y1,x2,y2)
-    if disToTarget <= 1.5:
+    if disToTarget <= 15:
         print binList[i]['attributes']['OBJECTID']
         payload = {"attributes" : {"OBJECTID" : binList[i]['attributes']['OBJECTID'],"Done": "No","collectToday" : "Yes"}}
         updateAGOL(payload)
