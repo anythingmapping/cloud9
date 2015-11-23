@@ -26,7 +26,7 @@ def queryAGOL():
     
     result = urllib.urlopen(url, urllib.urlencode(payload)).read()
     queryReturn =  json.loads(result)
-    print queryReturn
+    #print queryReturn
     activePickupList = []
     
     for i in range(len(queryReturn['features'])):
@@ -55,9 +55,10 @@ def updateAGOL(feat):
 
 objId = queryAGOL()
 featUpdates = formatQuery(objId)
-updateAGOL(featUpdates)
+print featUpdates[0]
+#updateAGOL(featUpdates)
 
 
-print "well done"
+print "well a done"
 #for help look here:
 #https://esriaustraliatechblog.wordpress.com/2013/12/20/using-python-to-write-features-to-a-feature-service/
