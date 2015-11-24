@@ -55,7 +55,7 @@ def updateAGOL(feat):
 
 objId = queryAGOL()
 featUpdates = formatQuery(objId)
-print featUpdates[0]
+print featUpdates
 #updateAGOL(featUpdates)
 
 

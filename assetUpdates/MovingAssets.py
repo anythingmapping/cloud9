@@ -33,7 +33,7 @@ class CouncilTrucks():
         self.payloadEncoded = urllib.urlencode(self.payload)
         self.result = urllib.urlopen(self.url,self.payloadEncoded).read()
         self.queryReturn = json.loads(self.result)
-        print self.queryReturn
+        #print self.queryReturn
 
 class GeoRSS():
     def __init__(self,authentication):
@@ -44,6 +44,9 @@ class GeoRSS():
         self.remoteId = 7771
         for i in range(len(self.feed['entries'])):
             if int(self.feed['entries'][i]['st_remoteid']) == self.remoteId:
+                print self.feed['entries'][i]
                 return self.feed['entries'][i]
+                
             else:
-                print "not found in the feed"
+                pass
+        #print "not found in the feed"
