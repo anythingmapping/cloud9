@@ -39,6 +39,7 @@ class GeoRSS():
     def __init__(self,authentication):
         self.authentication = authentication
     
+    
     def track169(self):
         self.feed = feedparser.parse('https://ws.smartrak.co.nz/EventAccess/CurrentPositionGeoRss.aspx?key=7405E8AA4A2D4016B61531E9D3C2EED4')
         self.remoteId = 7771
