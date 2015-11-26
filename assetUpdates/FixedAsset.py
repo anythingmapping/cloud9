@@ -10,14 +10,37 @@ class FixedAssets():
         """ PNCC queryAGOL content """
         self.url = self.fixedBinUrl + '/0/query'
         
+        #"outFields" : stops it from defaulting to random attributes
         self.payload = {"Where" : "1=1",
                         "f" : "json",
-                        "returnGeometry":"True"}
+                        "returnGeometry":"True",
+                        "outFields": "objectID"
+                        }
                         
         self.payloadEncoded = urllib.urlencode(self.payload)
         self.result = urllib.urlopen(self.url, self.payloadEncoded).read()
         self.queryReturn =  json.loads(self.result)
-        return self.queryReturn
+        #return a list to iterate through
+        #print self.queryReturn
+        return self.queryReturn['features']
+        
+    
+    def doneFixedAsset(self,closeOIDList):
+        
+        updateList = []
+        try:
+            #print closeOIDList[0]
+            for f in closeOIDList:
+                oidRef = f['attributes']['OBJECTID']
+                feat = {"attributes" : {"OBJECTID" : oidRef,"Done": "Yes"}}
+                updateList.append(feat)
+            payload = {"f": "json", "features": updateList}    
+            payloadEncoded = urllib.urlencode(payload)
+            result = urllib.urlopen(self.fixedBinUrl + '/0/updateFeatures', payloadEncoded).read()
+            queryReturn =  json.loads(result)
+        except:
+            print "nothing close by"
+            pass
     
     def prepDay(self,dayInt):
         
@@ -29,7 +52,8 @@ class FixedAssets():
                 "Friday",
                 "Saturday",
                 "Sunday"]
-            
+        
+        #UPDATE DAYINT IF YOU WANT AN UPDATE FOR TODAYS DAY    
         payload = {"Where" : "{}Collect='Yes'".format(days[(int(dayInt))+1]),
                         "f" : "json", 
                         "returnIdsOnly":"True"
@@ -46,7 +70,7 @@ class FixedAssets():
         updateList = []
         
         for f in featList:
-            print f
+            #print f
             feat = {"attributes" : {"OBJECTID" : f,"CollectToday": "Yes"}}
             updateList.append(feat)
         # print len(updateList)

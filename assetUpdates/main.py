@@ -6,7 +6,7 @@ import sys
 
 from MovingAssets import GeoRSS,CouncilTrucks
 from FixedAsset import FixedAssets
-
+from GeoMathmatics import haversineFormula
 
 def main():
 
@@ -21,7 +21,7 @@ def main():
         
         #FOR DEBUG OVERWRITE HOUR
         hourOfDay = time.strftime("%H")
-        hourOfDay = 19
+        #hourOfDay = 20
         
         
         
@@ -29,8 +29,8 @@ def main():
         ############ TIME CHECK SECTION ################
         ############ RESET AND TERMINATE ###############
         ################################################
-        #if its past 8 o'clock reset everything
-        if int(hourOfDay)>=20:
+        #if its past 4 o'clock reset everything
+        if int(hourOfDay)>=16:
             print "Time is {}:00 we are refreshing services".format(hourOfDay)
             reset = FixedAssets()
             reset.resetFixedAsset()
@@ -59,21 +59,24 @@ def main():
 
             #FIND BIN LOCATION
             binStatus = FixedAssets()
-            binXY = binStatus.queryFixedAssetsXY()
-            print len(binXY['features'])
+            binList = binStatus.queryFixedAssetsXY()
+            #print binList[0]
+            ########### CALCULATE THE DISTANCE BETWEEN BIN & TRUCK ############
+            truckXY = (truck.nowX,truck.nowY)
+            closeOIDList = haversineFormula(binList, truckXY)
+            # print closeOIDList
             
-            #Calculations
-            
-            #update bins if close
+            #UPDATE THE ASSETS CLOSE TO THE TRUCK
+            binStatus.doneFixedAsset(closeOIDList)
             #update truck count
 
         ################################################
         ############ CLOCK.TICK ########################
         ################################################
-        #time.sleep(10)
+        time.sleep(10)
         
-        if count ==1:
-            done = True
+        #if count ==1:
+            #done = True
 
 if __name__ == "__main__":
     main()

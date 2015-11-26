@@ -45,7 +45,7 @@ class GeoRSS():
         self.remoteId = 7771
         for i in range(len(self.feed['entries'])):
             if int(self.feed['entries'][i]['st_remoteid']) == self.remoteId:
-                print self.feed['entries'][i]
+                #print self.feed['entries'][i]
                 return self.feed['entries'][i]
                 
             else:
