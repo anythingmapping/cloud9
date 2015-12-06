@@ -35,7 +35,7 @@ def haversineFormula(binList,truckXY):
         
         #########################################################
         ############ HERE IS THE DISTANCE LOGIC #################
-        if disToTarget <= 0.2:
+        if disToTarget <= 0.05:
             #print "OID close"
             closeOIDList.append(binList[i])
             
