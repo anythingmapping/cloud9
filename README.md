@@ -1,18 +1,10 @@
-
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
-
-
-Hi there! Welcome to Cloud9 IDE!
-
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
-
-Happy coding!
-The Cloud9 IDE team
+______                  ______           _     _ 
+|  ___|                 |  _  \         (_)   | |
+| |_ __ _ _ __ _ __ ___ | | | |_ __ ___  _  __| |
+|  _/ _` | '__| '_ ` _ \| | | | '__/ _ \| |/ _` |
+| || (_| | |  | | | | | | |/ /| | | (_) | | (_| |
+\_| \__,_|_|  |_| |_| |_|___/ |_|  \___/|_|\__,_|
+                                                 
+                                            
+                                            
+Farm Droid is a hackathon project code name Bertrude!
