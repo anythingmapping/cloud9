@@ -30,6 +30,7 @@ def main():
         ############ RESET AND TERMINATE ###############
         ################################################
         #if its past 4 o'clock reset everything
+        
         if int(hourOfDay)>=16:
             print "Time is {}:00 we are refreshing services".format(hourOfDay)
             reset = FixedAssets()
@@ -42,7 +43,6 @@ def main():
             
             # KILL PROCESS FOR THE DAY
             done = True
-        
         ################################################
         ############ UPDATE TRUCK LOCATION #############
         ################################################
